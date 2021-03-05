@@ -1,0 +1,66 @@
+Code"G53 X0.2"                              'Move to tool change location
+While Ismoving()
+Wend                          
+Code"G53 Z0.2"
+While Ismoving()
+Wend
+
+ActivateSignal(output1)              'unlock the turrent
+While not Isactive(output2)         'wait for the switch to signal end of stroke
+Sleep(1000)                                'Give it time for the motion to fully stop
+Wend
+
+If GetCurrentTool() = 1 then        ' Check for the Tool #
+   Code"G0 A0.000"         ' Move to position
+   While Ismoving()           'wait for the movement to stop
+   Wend
+   End If
+
+If GetCurrentTool() = 2 then
+   Code"G0 A45"
+   While Ismoving()
+   Wend
+   End If
+
+If GetCurrentTool() = 3 then
+   Code"G0 A90"
+   While Ismoving()
+   Wend
+   End If
+
+If GetCurrentTool() = 4 then
+   Code"G0 A135"
+   While Ismoving()
+   Wend
+   End If
+
+If GetCurrentTool() = 5 then
+   Code"G0 A180"
+   While Ismoving()
+   Wend
+   End If
+
+If GetCurrentTool() = 6 then
+   Code"G0 A225"
+   While Ismoving()
+   Wend
+   End If
+
+If GetCurrentTool() = 7 then
+   Code"G0 A270"
+   While Ismoving()
+   Wend
+   End If
+
+If GetCurrentTool() = 8 then
+   Code"G0 A315"
+   While Ismoving()
+   Wend
+   End If
+
+DeacctivateSignal(output1)              'Release air cylinder
+While NOT Isactive(output3)
+Wend
+Sleep(1000)                                          'Give it time to complete end of stroke
+
+End
